@@ -1,0 +1,9 @@
+<ng-container *ngFor="let social of socialList">
+    <a href="{{ social.url }}">
+      <img class="mr-2 mb-2"
+           src="../assets/{{ social.name }}.svg"
+           alt="{{ social.alt }}"
+           height="35"
+           width="35">
+    </a>
+</ng-container>

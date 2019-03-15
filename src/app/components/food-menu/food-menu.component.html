@@ -1,0 +1,45 @@
+<div *ngIf="menuList.length === 0; else menuContainer;" class="d-flex justify-content-center">
+  <div class="spinner-border" role="status">
+    <span class="sr-only">Loading...</span>
+  </div>
+</div>
+
+<ng-template #menuContainer>
+  <div class="container text-center">
+    <h1>Menu</h1>
+
+    <div *ngFor="let group of menuList; let i = index">
+      <h2 class="pt-5 pb-2">
+        <u>{{ group.category | uppercase }}</u>
+      </h2>
+
+      <p *ngIf="group.details.description" class="pt-2 description">
+        <span class="font-weight-bold">{{ group.details.description }}</span>
+        <span class="font-italic px-2">{{ group.details.price ? (group.details.price | currency: 'CAD') :  '' }}</span>
+      </p>
+
+
+      <div *ngFor="let item of group.items" class="pt-2">
+
+        <h4 class="py-2">{{ item.name }}</h4>
+        <div>
+          <span class="description">{{ item.description }}</span>
+          <span class="px-2 font-italic font-weight-bold">
+            {{ item.price | currency: 'CAD' }}
+          </span>
+
+          <div *ngIf="item.extra.description" class="extra">
+            <span class="font-italic font-weight-light">{{ item.extra.description }}</span>
+            <span class="font-weight-bold font-italic">
+              {{ item.extra.price | currency: 'CAD' }}
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+</ng-template>
+
